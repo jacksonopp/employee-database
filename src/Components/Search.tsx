@@ -61,7 +61,7 @@ const Search: React.FC<Props> = ({ data, handleData }: Props) => {
             className={type === "location" ? "active" : ""}
             onClick={() => setType("location")}
          >
-            location
+            Location
          </button>
       </>
    );
