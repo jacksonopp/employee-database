@@ -9,25 +9,60 @@ interface Props {
 
 const Search: React.FC<Props> = ({ data, handleData }: Props) => {
    const [search, setSearch] = useState("");
+   const [type, setType] = useState("name");
 
    useEffect(() => {
-      const newData: Employee[] = data.filter(
-         d =>
-            d.name.first.toLowerCase().includes(search) ||
-            d.name.last.toLowerCase().includes(search)
-      );
-      handleData([...newData]);
+      switch (type) {
+         case "name":
+            handleData([
+               ...data.filter(
+                  d =>
+                     d.name.first
+                        .toLowerCase()
+                        .includes(search.toLowerCase()) ||
+                     d.name.last.toLowerCase().includes(search.toLowerCase())
+               )
+            ]);
+            break;
+         case "location":
+            handleData([
+               ...data.filter(
+                  d =>
+                     d.location.city
+                        .toLowerCase()
+                        .includes(search.toLowerCase()) ||
+                     d.location.country
+                        .toLowerCase()
+                        .includes(search.toLowerCase()) ||
+                     d.location.state
+                        .toLowerCase()
+                        .includes(search.toLowerCase())
+               )
+            ]);
+      }
    }, [search]);
    return (
       <>
          <input
-            placeholder="search name"
+            placeholder={`search ${type}`}
             value={search}
             onChange={e => setSearch(e.target.value)}
             type="text"
             name="name search"
             aria-label="name-search"
          />
+         <button
+            className={type === "name" ? "active" : ""}
+            onClick={() => setType("name")}
+         >
+            Name
+         </button>
+         <button
+            className={type === "location" ? "active" : ""}
+            onClick={() => setType("location")}
+         >
+            location
+         </button>
       </>
    );
 };

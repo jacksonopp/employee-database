@@ -7,3 +7,8 @@ input {
    border-radius: 4px;
    background-color: #eee;
 }
+
+.active {
+   background-color: salmon;
+   color: rebeccapurple;
+}

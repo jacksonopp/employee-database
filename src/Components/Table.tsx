@@ -9,7 +9,6 @@ import "./Table.css";
 
 export interface Employee {
    name: {
-      title: string;
       first: string;
       last: string;
    };
@@ -21,6 +20,16 @@ export interface Employee {
    login: {
       uuid: string;
    };
+   location: {
+      city: string;
+      country: string;
+      state: string;
+   };
+   picture: {
+      large: string;
+      medium: string;
+      thumbnail: string;
+   };
 }
 
 const Table: React.FC = () => {
@@ -29,6 +38,8 @@ const Table: React.FC = () => {
    const { data: employees } = useGet(
       "https://randomuser.me/api/?results=200&nat=us,au,dk,fr,gb"
    );
+
+   console.log(employees);
 
    useEffect(() => {
       setViewEmployees(employees);
@@ -103,17 +114,43 @@ const Table: React.FC = () => {
                   <th>
                      <FilterButton cb={() => sort("email")} title="Email" />
                   </th>
+                  <th>
+                     <FilterButton
+                        cb={() => sort("location", "city")}
+                        title="City"
+                     />
+                  </th>
+                  <th>
+                     <FilterButton
+                        cb={() => sort("location", "state")}
+                        title="State/County"
+                     />
+                  </th>
+                  <th>
+                     <FilterButton
+                        cb={() => sort("location", "country")}
+                        title="Country"
+                     />
+                  </th>
                </tr>
             </thead>
             <tbody>
                {viewEmployees.map((employee: Employee) => {
-                  // console.log(employee);
                   return (
                      <tr key={employee.login.uuid}>
                         <td>{employee.name.first}</td>
                         <td>{employee.name.last}</td>
                         <td>{employee.dob.age}</td>
                         <td>{employee.email}</td>
+                        <td>{employee.location.city}</td>
+                        <td>{employee.location.state}</td>
+                        <td>{employee.location.country}</td>
+                        <td>
+                           <img
+                              src={employee.picture.medium}
+                              alt={`${employee.name.first} ${employee.name.last}`}
+                           />
+                        </td>
                      </tr>
                   );
                })}
