@@ -36,7 +36,7 @@ const Table: React.FC = () => {
    const [viewEmployees, setViewEmployees] = useState([]);
    const [isAsc, setIsAsc] = useState();
    const { data: employees } = useGet(
-      "https://randomuser.me/api/?results=200&nat=us,au,dk,fr,gb"
+      "https://randomuser.me/api/?results=200&nat=us,au,dk,fr,gb,ie,br,ca,fi"
    );
 
    console.log(employees);

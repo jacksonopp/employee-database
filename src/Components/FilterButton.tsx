@@ -1,7 +1,6 @@
 import React from "react";
 import "./FilterButton.css";
 
-type SearchParam = string | number;
 interface Props {
    title: String;
    cb: any;
