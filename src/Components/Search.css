@@ -1,0 +1,9 @@
+input {
+   margin: 10px;
+   height: 30px;
+   text-align: center;
+   font-size: 18px;
+   border: solid 3px rebeccapurple;
+   border-radius: 4px;
+   background-color: #eee;
+}

@@ -1,0 +1,10 @@
+button {
+   width: fit-content;
+   height: fit-content;
+   padding: 5px 15px;
+   background-color: rebeccapurple;
+   color: salmon;
+   border-radius: 4px;
+   border: solid 1px salmon;
+   font-size: 18px;
+}
